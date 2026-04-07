@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://um3ubx14dca7"]
+
+[ext_resource type="Script" uid="uid://d0usqs6ycnqxe" path="res://character_body_2d.gd" id="1_0hol4"]
+[ext_resource type="Texture2D" uid="uid://di28f3rvs35m0" path="res://soul.png" id="1_wtcfe"]
+[ext_resource type="Texture2D" uid="uid://lesc7mvv8dew" path="res://background.png" id="2_0e48y"]
+[ext_resource type="Script" uid="uid://c8s817l4poiw1" path="res://color_rect.gd" id="2_epypp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
+size = Vector2(10, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
+size = Vector2(40, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kdubu"]
+size = Vector2(40, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d21ai"]
+size = Vector2(2, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rj586"]
+size = Vector2(2, 40)
+
+[node name="Node2D" type="Node2D" unique_id=465323485]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1871039526]
+follow_viewport_enabled = true
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer" unique_id=1946571598]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1180873044]
+z_index = -1
+position = Vector2(2.3841858e-06, -1.6629696e-05)
+scale = Vector2(4, 4.0000005)
+texture = ExtResource("2_0e48y")
+metadata/_edit_lock_ = true
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=467547486]
+disable_mode = 2
+collision_layer = 255
+motion_mode = 1
+safe_margin = 0.1
+script = ExtResource("1_0hol4")
+
+[node name="Soul" type="Sprite2D" parent="CharacterBody2D" unique_id=1849278625]
+z_index = 2
+position = Vector2(0, 1)
+texture = ExtResource("1_wtcfe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1774203969]
+shape = SubResource("RectangleShape2D_q6r6c")
+debug_color = Color(0.95207244, 0.2216078, 1.92523e-07, 0.41960785)
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1762389701]
+z_index = 1
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("2_epypp")
+
+[node name="Area2D" type="Area2D" parent="ColorRect" unique_id=1402909988]
+
+[node name="upcoll" type="CollisionShape2D" parent="ColorRect/Area2D" unique_id=1732763950]
+position = Vector2(20, -1)
+shape = SubResource("RectangleShape2D_0hol4")
+
+[node name="downcoll" type="CollisionShape2D" parent="ColorRect/Area2D" unique_id=485510037]
+position = Vector2(20, 41)
+shape = SubResource("RectangleShape2D_kdubu")
+
+[node name="rightcoll" type="CollisionShape2D" parent="ColorRect/Area2D" unique_id=1306763481]
+position = Vector2(41, 20)
+shape = SubResource("RectangleShape2D_d21ai")
+
+[node name="leftcoll" type="CollisionShape2D" parent="ColorRect/Area2D" unique_id=1129271457]
+position = Vector2(-1, 20)
+shape = SubResource("RectangleShape2D_rj586")
