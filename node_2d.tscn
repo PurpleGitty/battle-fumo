@@ -1,12 +1,17 @@
 [gd_scene format=3 uid="uid://um3ubx14dca7"]
 
 [ext_resource type="Script" uid="uid://d0usqs6ycnqxe" path="res://character_body_2d.gd" id="1_0hol4"]
-[ext_resource type="Texture2D" uid="uid://b3np4gq6cb5b6" path="res://violetcina.png" id="1_kdubu"]
-[ext_resource type="Texture2D" uid="uid://di28f3rvs35m0" path="res://soul.png" id="1_wtcfe"]
-[ext_resource type="Texture2D" uid="uid://lesc7mvv8dew" path="res://background.png" id="2_0e48y"]
-[ext_resource type="Texture2D" uid="uid://qkx0mdkg5pni" path="res://purplecina.png" id="2_d21ai"]
+[ext_resource type="Texture2D" uid="uid://b3np4gq6cb5b6" path="res://sprites/violetcina.png" id="1_kdubu"]
+[ext_resource type="Texture2D" uid="uid://di28f3rvs35m0" path="res://sprites/soul.png" id="1_wtcfe"]
+[ext_resource type="Texture2D" uid="uid://qkx0mdkg5pni" path="res://sprites/purplecina.png" id="2_d21ai"]
 [ext_resource type="Script" uid="uid://c8s817l4poiw1" path="res://battle_board.gd" id="2_epypp"]
 [ext_resource type="Script" uid="uid://dqixihepai57n" path="res://hud.gd" id="3_d21ai"]
+[ext_resource type="FontFile" uid="uid://c576fguyytboj" path="res://Mojang-Regular.ttf" id="4_4d7sh"]
+[ext_resource type="Texture2D" uid="uid://cclifxtacvaoe" path="res://sprites/hpempty.png" id="5_4d7sh"]
+[ext_resource type="Texture2D" uid="uid://dn2hqgdnpuqay" path="res://sprites/hpfull.png" id="6_ir8iy"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kdubu"]
+load_path = "res://.godot/imported/background.png-98289422cd7d93003950872a7b97021f.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
 size = Vector2(10, 11)
@@ -28,12 +33,12 @@ size = Vector2(2, 40)
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1871039526]
 follow_viewport_enabled = true
 
-[node name="Violetcina" type="Sprite2D" parent="CanvasLayer" unique_id=843029258]
+[node name="violet" type="Sprite2D" parent="CanvasLayer" unique_id=843029258]
 position = Vector2(-112, 168)
 scale = Vector2(4, 4)
 texture = ExtResource("1_kdubu")
 
-[node name="Purplecina" type="Sprite2D" parent="CanvasLayer" unique_id=1720968395]
+[node name="purple" type="Sprite2D" parent="CanvasLayer" unique_id=1720968395]
 position = Vector2(-276, 168)
 scale = Vector2(4, 4)
 texture = ExtResource("2_d21ai")
@@ -47,13 +52,85 @@ offset_right = 320.0
 offset_bottom = 384.0
 color = Color(0, 0, 0, 1)
 script = ExtResource("3_d21ai")
+metadata/_edit_lock_ = true
+
+[node name="Line2D" type="Line2D" parent="CanvasLayer/hud" unique_id=1858483018]
+position = Vector2(-1, 14)
+points = PackedVector2Array(0, 26, 316, 26)
+width = 2.0
+
+[node name="mc1" type="Label" parent="CanvasLayer/hud" unique_id=1235019123]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 12.0
+offset_right = 84.0
+offset_bottom = 29.0
+theme_override_fonts/font = ExtResource("4_4d7sh")
+text = "Purple"
+
+[node name="hp1" type="TextureProgressBar" parent="CanvasLayer/hud/mc1" unique_id=883127147]
+layout_mode = 0
+offset_left = 69.0
+offset_right = 119.0
+offset_bottom = 15.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_4d7sh")
+texture_progress = ExtResource("6_ir8iy")
+
+[node name="mc2" type="Label" parent="CanvasLayer/hud" unique_id=826992801]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 12.0
+offset_right = 235.0
+offset_bottom = 29.0
+theme_override_fonts/font = ExtResource("4_4d7sh")
+text = "Violet"
+
+[node name="hp2" type="TextureProgressBar" parent="CanvasLayer/hud/mc2" unique_id=85719889]
+layout_mode = 0
+offset_left = 58.0
+offset_right = 108.0
+offset_bottom = 15.0
+value = 100.0
+rounded = true
+nine_patch_stretch = true
+texture_under = ExtResource("5_4d7sh")
+texture_progress = ExtResource("6_ir8iy")
+
+[node name="flavortext" type="RichTextLabel" parent="CanvasLayer/hud" unique_id=1134430732]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 46.0
+offset_right = 306.0
+offset_bottom = 140.0
+theme_override_fonts/normal_font = ExtResource("4_4d7sh")
+text = "* This is flavor text!
+* Can you fight long enough to see it all?
+* I can't believe I thought it'd be smarter to make all this by hand!"
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="debug menu" type="RichTextLabel" parent="CanvasLayer" unique_id=1887913105]
+offset_left = -320.0
+offset_top = -240.0
+offset_right = -36.0
+offset_bottom = -40.0
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1180873044]
 z_index = -1
 position = Vector2(2.3841858e-06, -1.6629696e-05)
 scale = Vector2(4, 4.0000005)
-texture = ExtResource("2_0e48y")
+texture = SubResource("CompressedTexture2D_kdubu")
 metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Background" unique_id=688515230]
+visible = false
+offset_left = -80.0
+offset_top = -59.99999
+offset_right = 80.0
+offset_bottom = 59.999996
+color = Color(0, 0, 0, 1)
 
 [node name="soul" type="CharacterBody2D" parent="." unique_id=467547486]
 visible = false

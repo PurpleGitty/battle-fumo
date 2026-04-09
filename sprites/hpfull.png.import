@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di28f3rvs35m0"
-path="res://.godot/imported/soul.png-a7dc2477612f799cc6be0fb0627ed5e2.ctex"
+uid="uid://dn2hqgdnpuqay"
+path="res://.godot/imported/hpfull.png-8dedac93c287f5cdf29f72b136684c03.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://soul.png"
-dest_files=["res://.godot/imported/soul.png-a7dc2477612f799cc6be0fb0627ed5e2.ctex"]
+source_file="res://sprites/hpfull.png"
+dest_files=["res://.godot/imported/hpfull.png-8dedac93c287f5cdf29f72b136684c03.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3np4gq6cb5b6"
-path="res://.godot/imported/violetcina.png-5ae10cb503f6fe1173c20a697ce12413.ctex"
+uid="uid://qkx0mdkg5pni"
+path="res://.godot/imported/purplecina.png-e5ee22718956617716a24d4f7afd234b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://violetcina.png"
-dest_files=["res://.godot/imported/violetcina.png-5ae10cb503f6fe1173c20a697ce12413.ctex"]
+source_file="res://sprites/purplecina.png"
+dest_files=["res://.godot/imported/purplecina.png-e5ee22718956617716a24d4f7afd234b.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lesc7mvv8dew"
-path="res://.godot/imported/background.png-98289422cd7d93003950872a7b97021f.ctex"
+uid="uid://cclifxtacvaoe"
+path="res://.godot/imported/hpempty.png-9978cc15d9b2186814461ced0089d11b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://background.png"
-dest_files=["res://.godot/imported/background.png-98289422cd7d93003950872a7b97021f.ctex"]
+source_file="res://sprites/hpempty.png"
+dest_files=["res://.godot/imported/hpempty.png-9978cc15d9b2186814461ced0089d11b.ctex"]
 
 [params]
 
