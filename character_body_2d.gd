@@ -30,15 +30,18 @@ func take_damage(amount):
 	
 	var purple_mult = $"../CanvasLayer/testicina".focus / 4.0
 	var violet_mult = 1.0 - purple_mult
-	if !$"../CanvasLayer/violet".dead:
-		$"../CanvasLayer/purple".hp -= floor(amount * purple_mult)
-	else:
-		$"../CanvasLayer/purple".hp -= amount
-		
-	if !$"../CanvasLayer/purple".dead:
-		$"../CanvasLayer/violet".hp -= floor(amount * violet_mult)
-	else:
-		$"../CanvasLayer/violet".hp -= amount
+	
+	var purple = $"../CanvasLayer/purple"
+	var violet = $"../CanvasLayer/violet"
+
+	if not purple.dead and not violet.dead:
+		purple.hp -= floor(amount * purple_mult)
+		violet.hp -= floor(amount * violet_mult)
+	elif not purple.dead:
+		purple.hp -= amount
+	elif not violet.dead:
+		violet.hp -= amount
+	
 	await get_tree().create_timer(1.0).timeout
 	invincibility = false
 	for area in $"bullet collision".get_overlapping_areas():
