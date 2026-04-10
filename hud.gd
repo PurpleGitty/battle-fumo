@@ -2,15 +2,13 @@ extends ColorRect
 
 var menuintween: Tween
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	open_menu()
 	$flavortext.visible_ratio = 0
+	$"../../board".turnchanged.connect(_on_board_turn_changed)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if $"../../ColorRect".yourturn:
+func _on_board_turn_changed(yourturn):
+	if $"../../board".yourturn:
 		open_menu()
 	else:
 		close_menu()
@@ -22,10 +20,10 @@ func open_menu():
 	menuintween = create_tween()	
 	
 	
-	menuintween.tween_property(self, "position", Vector2(4, 96), 0.5)
-	menuintween.parallel().tween_property($flavortext, "visible_ratio", 1, 1)\
-		.set_trans(Tween.TRANS_LINEAR)\
-		.set_ease(Tween.EASE_IN)
+	menuintween.tween_property(self, "position", Vector2(4, 96), 0.5).set_trans(Tween.TRANS_LINEAR)
+	var type_speed = 0.05 # Seconds per character
+	var duration = $flavortext.text.length() * type_speed
+	menuintween.parallel().tween_property($flavortext, "visible_ratio", 1, 1).set_trans(Tween.TRANS_LINEAR)
 
 func close_menu():
 	if menuintween:

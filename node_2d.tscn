@@ -2,19 +2,40 @@
 
 [ext_resource type="Script" uid="uid://d0usqs6ycnqxe" path="res://character_body_2d.gd" id="1_0hol4"]
 [ext_resource type="Texture2D" uid="uid://b3np4gq6cb5b6" path="res://sprites/violetcina.png" id="1_kdubu"]
-[ext_resource type="Texture2D" uid="uid://di28f3rvs35m0" path="res://sprites/soul.png" id="1_wtcfe"]
+[ext_resource type="Script" uid="uid://cxj5hgco0cph8" path="res://violet.gd" id="2_d2bti"]
 [ext_resource type="Texture2D" uid="uid://qkx0mdkg5pni" path="res://sprites/purplecina.png" id="2_d21ai"]
 [ext_resource type="Script" uid="uid://c8s817l4poiw1" path="res://battle_board.gd" id="2_epypp"]
 [ext_resource type="Script" uid="uid://dqixihepai57n" path="res://hud.gd" id="3_d21ai"]
+[ext_resource type="Shader" uid="uid://d1x6sn8co74yv" path="res://dissolve.gdshader" id="3_k73cj"]
 [ext_resource type="FontFile" uid="uid://c576fguyytboj" path="res://Mojang-Regular.ttf" id="4_4d7sh"]
+[ext_resource type="Script" uid="uid://cyxny05j4nal8" path="res://purple.gd" id="4_ta5nu"]
 [ext_resource type="Texture2D" uid="uid://cclifxtacvaoe" path="res://sprites/hpempty.png" id="5_4d7sh"]
 [ext_resource type="Texture2D" uid="uid://dn2hqgdnpuqay" path="res://sprites/hpfull.png" id="6_ir8iy"]
+[ext_resource type="Script" uid="uid://8p11fpiccmmk" path="res://debug.gd" id="7_ir8iy"]
+[ext_resource type="Texture2D" uid="uid://cvdblcqestjqr" path="res://sprites/purple_head.png" id="8_x0ka3"]
+[ext_resource type="Script" uid="uid://cu01jd1suobux" path="res://testicina.gd" id="9_0h7mo"]
+[ext_resource type="Texture2D" uid="uid://cftv72vfekwot" path="res://sprites/pellet.png" id="13_0h7mo"]
+[ext_resource type="Texture2D" uid="uid://ppw0jssh2vgv" path="res://sprites/candy_soul.png" id="13_flf07"]
+[ext_resource type="Script" uid="uid://cbd473c2dvnku" path="res://pellet.gd" id="15_ta5nu"]
+[ext_resource type="AudioStream" uid="uid://byb6wg0ysj7r3" path="res://sounds/snd_hurt1.wav" id="17_flf07"]
+[ext_resource type="AudioStream" uid="uid://b4mvekovatj5v" path="res://sounds/spanked.wav" id="19_rjqkl"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rjqkl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fs4d3"]
+shader = ExtResource("3_k73cj")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_rjqkl")
+shader_parameter/dissolve_value = 0.0
+shader_parameter/glow_color = Color(0, 1, 1, 1)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kdubu"]
 load_path = "res://.godot/imported/background.png-98289422cd7d93003950872a7b97021f.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
 size = Vector2(10, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ta5nu"]
+size = Vector2(8, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
 size = Vector2(40, 2)
@@ -28,6 +49,9 @@ size = Vector2(2, 40)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rj586"]
 size = Vector2(2, 40)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nr8wp"]
+size = Vector2(12, 12)
+
 [node name="Node2D" type="Node2D" unique_id=465323485]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1871039526]
@@ -37,11 +61,14 @@ follow_viewport_enabled = true
 position = Vector2(-112, 168)
 scale = Vector2(4, 4)
 texture = ExtResource("1_kdubu")
+script = ExtResource("2_d2bti")
 
 [node name="purple" type="Sprite2D" parent="CanvasLayer" unique_id=1720968395]
+material = SubResource("ShaderMaterial_fs4d3")
 position = Vector2(-276, 168)
 scale = Vector2(4, 4)
 texture = ExtResource("2_d21ai")
+script = ExtResource("4_ta5nu")
 
 [node name="Camera2D" type="Camera2D" parent="CanvasLayer" unique_id=1946571598]
 
@@ -107,7 +134,7 @@ offset_bottom = 140.0
 theme_override_fonts/normal_font = ExtResource("4_4d7sh")
 text = "* This is flavor text!
 * Can you fight long enough to see it all?
-* I can't believe I thought it'd be smarter to make all this by hand!"
+"
 scroll_active = false
 shortcut_keys_enabled = false
 
@@ -116,6 +143,15 @@ offset_left = -320.0
 offset_top = -240.0
 offset_right = -36.0
 offset_bottom = -40.0
+script = ExtResource("7_ir8iy")
+
+[node name="testicina" type="Sprite2D" parent="CanvasLayer" unique_id=1194982940]
+position = Vector2(212, -10)
+scale = Vector2(4, 4)
+texture = ExtResource("8_x0ka3")
+hframes = 8
+frame = 6
+script = ExtResource("9_0h7mo")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1180873044]
 z_index = -1
@@ -141,13 +177,19 @@ script = ExtResource("1_0hol4")
 [node name="Soul" type="Sprite2D" parent="soul" unique_id=1849278625]
 z_index = 2
 position = Vector2(0, 1)
-texture = ExtResource("1_wtcfe")
+texture = ExtResource("13_flf07")
+hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="soul" unique_id=1774203969]
 shape = SubResource("RectangleShape2D_q6r6c")
 debug_color = Color(0.95207244, 0.2216078, 1.92523e-07, 0.41960785)
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1762389701]
+[node name="bullet collision" type="Area2D" parent="soul" unique_id=1080626180]
+
+[node name="collider" type="CollisionShape2D" parent="soul/bullet collision" unique_id=1726890460]
+shape = SubResource("RectangleShape2D_ta5nu")
+
+[node name="board" type="ColorRect" parent="." unique_id=1762389701]
 visible = false
 z_index = 1
 offset_left = -20.0
@@ -157,20 +199,41 @@ offset_bottom = 20.0
 color = Color(0, 0, 0, 1)
 script = ExtResource("2_epypp")
 
-[node name="collision" type="StaticBody2D" parent="ColorRect" unique_id=678603675]
+[node name="collision" type="StaticBody2D" parent="board" unique_id=678603675]
 
-[node name="upcoll" type="CollisionShape2D" parent="ColorRect/collision" unique_id=1732763950]
+[node name="upcoll" type="CollisionShape2D" parent="board/collision" unique_id=1732763950]
 position = Vector2(20, -1)
 shape = SubResource("RectangleShape2D_0hol4")
 
-[node name="downcoll" type="CollisionShape2D" parent="ColorRect/collision" unique_id=485510037]
+[node name="downcoll" type="CollisionShape2D" parent="board/collision" unique_id=485510037]
 position = Vector2(20, 41)
 shape = SubResource("RectangleShape2D_kdubu")
 
-[node name="rightcoll" type="CollisionShape2D" parent="ColorRect/collision" unique_id=1306763481]
+[node name="rightcoll" type="CollisionShape2D" parent="board/collision" unique_id=1306763481]
 position = Vector2(41, 20)
 shape = SubResource("RectangleShape2D_d21ai")
 
-[node name="leftcoll" type="CollisionShape2D" parent="ColorRect/collision" unique_id=1129271457]
+[node name="leftcoll" type="CollisionShape2D" parent="board/collision" unique_id=1129271457]
 position = Vector2(-1, 20)
 shape = SubResource("RectangleShape2D_rj586")
+
+[node name="pellet" type="Area2D" parent="board" unique_id=1080312431]
+script = ExtResource("15_ta5nu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="board/pellet" unique_id=1174494664]
+position = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_nr8wp")
+
+[node name="Pellet" type="Sprite2D" parent="board/pellet" unique_id=1417371308]
+position = Vector2(10, 10)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_0h7mo")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=401650925]
+stream = ExtResource("17_flf07")
+
+[node name="Spanked" type="AudioStreamPlayer" parent="." unique_id=2029786336]
+stream = ExtResource("19_rjqkl")
+
+[connection signal="area_entered" from="soul/bullet collision" to="soul" method="_on_bullet_collision_area_entered"]
+[connection signal="body_entered" from="soul/bullet collision" to="soul" method="_on_bullet_collision_body_entered"]
