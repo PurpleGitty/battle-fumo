@@ -20,13 +20,13 @@ func _on_bullet_collision_area_entered(area: Area2D) -> void:
 	if invincibility:
 		return
 		
-
 	if "damage" in area && !$"../board".yourturn:
 		take_damage(area.damage)
 			
 func take_damage(amount):
 	invincibility = true
 	$"../AudioStreamPlayer2D".play()
+	
 	
 	var purple_mult = $"../CanvasLayer/testicina".focus / 4.0
 	var violet_mult = 1.0 - purple_mult

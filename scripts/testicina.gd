@@ -14,7 +14,7 @@ var hp = 10000
 	},
 	{
 		"flavor": "This is also flavor text!",
-		"dialogue": "Ready for round one?",
+		"dialogue": "Ready for round two?",
 		"board_size": Vector2(128, 128),
 		"attack_index": 1,
 		"transition_time": 10.0,
